@@ -6,6 +6,7 @@ $query_params = $uri["query"] ?? '';
 $routes = [
     "/" => "controllers/index.php",
     "/about" => "controllers/about.php",
+    "/notes" => "controllers/notes.php",
     "/contact" => "controllers/contact.php"
 ];
 
