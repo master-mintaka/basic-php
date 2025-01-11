@@ -15,7 +15,7 @@ if (!$note) {
 
 $currentUserId = 1;
 
-if (!($note['user_id'] !== $currentUserId)) {
+if (!($note['user_id'] === $currentUserId)) {
     abort(Response::HTTP_FORBIDDEN);
 }
 
