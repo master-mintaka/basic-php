@@ -4,6 +4,7 @@ class Database
 {
     private static $instance = null;
     private $connection;
+    public $statement;
 
     private function __construct($config)
     {
@@ -20,11 +21,38 @@ class Database
         return self::$instance;
     }
 
-    public function query($query, $params = []): bool|PDOStatement
+    public function query($query, $params = []): self
     {
-        $statement = $this->connection->prepare($query);
-        $statement->execute($params);
-        return $statement;
+        $this->statement = $this->connection->prepare($query);
+        $this->statement->execute($params);
+        return $this;
+    }
+
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->find();
+        if (!$result) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
+        return $result;
+    }
+
+    public function get()
+    {
+        return $this->statement->fetchAll();
+    }
+    public function getAllOrFail()
+    {
+        $result = $this->get();
+        if (!$result) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
+        return $result;
     }
 
     public function close(): void

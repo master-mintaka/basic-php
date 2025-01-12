@@ -29,3 +29,10 @@ function abort($http_status_code = 404): never
     require "views/{$http_status_code}.php";
     die();
 }
+
+function authorize($condition, $http_status_code = Response::HTTP_FORBIDDEN): void
+{
+    if (!$condition) {
+        abort($http_status_code);
+    }
+}
