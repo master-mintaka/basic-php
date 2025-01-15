@@ -1,8 +1,8 @@
 <?php
-$heading = "New Note";
+$heading = "Create Note";
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    /*
+    
     $db = Database::getInstance(require 'config.php');
     $db->query("INSERT INTO notes (body, user_id) VALUES (:body, :user_id)", [
         'body' => $_POST['body'],
@@ -10,7 +10,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
     $db->close();
     header('Location: /notes');
-    */
+    
+
 }
 
 

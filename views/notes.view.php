@@ -17,9 +17,15 @@
         <tbody class="bg-white divide-y divide-gray-200">
           <?php foreach ($notes as $note) : ?>
             <tr>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?= $note['id'] ?></td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= substr($note['body'], 0, 150). "  ..." ?></td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"><a href="/note?id=<?= $note['id'] ?>">+</a></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <?= $note['id'] ?>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <?= htmlspecialchars(substr($note['body'], 0, 150)) . "  ..." ?>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                <a href="/note?id=<?= $note['id'] ?>">+</a>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
