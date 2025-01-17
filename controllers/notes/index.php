@@ -6,4 +6,4 @@ $notes = $dbi->query("SELECT * FROM notes where user_id = 1")->getAllOrFail();
 $dbi->close();
 
 
-require "views/notes.view.php";
+require "views/notes/index.view.php";
