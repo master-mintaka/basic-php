@@ -1,27 +1,26 @@
 <?php
+require 'Validator.php';   
 $heading = "Create Note";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    //Instances
     $db = Database::getInstance(require 'config.php');
+    $body = $_POST['body'];
 
-    //VALIDATION
+    //VALIDATION ARRAYS
     $errors = [];
     $content = [];
 
-    if (!isset($_POST['body']) || empty($_POST['body'])) {
-        $errors['body'] = 'The body field is required';
-    }
-
-    if (strlen($_POST['body']) > 500) {
+    if (!Validator::isValidString($body, 1, 500)) {
+        $content['body'] = $body;
         $errors['body'] = 'The body field must be less than 500 characters';
-        $content['body'] = $_POST['body'];
     }
 
     if (empty($errors)) {
         $query = "INSERT INTO notes (body, user_id) VALUES (:body, :user_id)";
         $db->query($query, [
-            'body' => $_POST['body'],
+            'body' => $body,
             'user_id' => 1
         ]);
         $db->close();
