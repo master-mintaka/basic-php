@@ -1,16 +1,19 @@
 <?php
-require 'Validator.php';   
-$heading = "Create Note";
+require base_path('Core/Validator.php');
+$heading = "";
+
+//VALIDATION ARRAYS
+$errors = [];
+$content = [];
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //Instances
-    $db = Database::getInstance(require 'config.php');
+    $db = Database::getInstance(require base_path('config.php'));
+    //$db = new Database(require base_path('config.php'));
     $body = $_POST['body'];
 
-    //VALIDATION ARRAYS
-    $errors = [];
-    $content = [];
 
     if (!Validator::isValidString($body, 1, 500)) {
         $content['body'] = $body;
@@ -28,4 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require 'views/notes/create.view.php';
+view("notes/create.view.php", [
+    "heading" => "Create Note",
+    "errors" => $errors,
+    "content" => $content
+]);

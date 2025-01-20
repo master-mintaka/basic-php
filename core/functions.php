@@ -17,7 +17,7 @@ function urlIs($value): bool
 function routeToController(array $uri, array $routes): void
 {
     if (array_key_exists($uri['path'], $routes)){
-        require $routes[$uri['path']];
+        require base_path($routes[$uri['path']]);
     }else{
         abort();
     }
@@ -35,4 +35,15 @@ function authorize($condition, $http_status_code = Response::HTTP_FORBIDDEN): vo
     if (!$condition) {
         abort($http_status_code);
     }
+}
+
+function base_path($path = ''): string
+{
+    return BASE_PATH . $path;
+}
+
+function view($path, $data = []): void
+{   
+    extract($data);
+    require base_path(path: 'views/' . $path);
 }
