@@ -26,7 +26,7 @@ function routeToController(array $uri, array $routes): void
 function abort($http_status_code = Response::HTTP_NOT_FOUND): never
 {
     http_response_code($http_status_code);
-    require "views/{$http_status_code}.php";
+    require base_path("views/{$http_status_code}.php");
     die();
 }
 
