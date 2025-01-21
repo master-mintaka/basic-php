@@ -1,5 +1,8 @@
 <?php
-require base_path('Core/Validator.php');
+use Core\Database;
+use Core\Validator;
+
+//require base_path('Core/Validator.php');
 $heading = "";
 
 //VALIDATION ARRAYS

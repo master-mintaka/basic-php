@@ -1,4 +1,7 @@
 <?php
+use Core\Database;
+use Core\Response;  
+
 $heading = "Note Detail";
 
 $db = Database::getInstance(require base_path("config.php"));
