@@ -10,6 +10,12 @@
       <p class="mt-2 text-sm text-gray-500"><?= htmlspecialchars($note['body']) ?></p>
     </article>
     <p><a href="notes" class="text-blue-500 hover:text-blue-700">Go back.</a></p>
+
+    <form class="mt-6" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="hidden" name="id" value="<?= $note['id'] ?>">
+      <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+    </form>
   </div>
 </main>
 
