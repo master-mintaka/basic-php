@@ -2,12 +2,13 @@
 
 use Core\Database;
 use Core\Validator;
+use Core\App;  
 
 //VALIDATION ARRAYS
 $errors = [];
 $content = [];
 
-$db = Database::getInstance(require base_path('config.php'));
+$db = App::container()->resolve(Database::class);
 $body = $_POST['body'];
 
 if (!Validator::isValidString($body, 1, 500)) {

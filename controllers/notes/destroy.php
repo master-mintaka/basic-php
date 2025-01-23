@@ -1,8 +1,9 @@
 <?php
-use Core\Database;
 use Core\Response;  
+use Core\App;
+use Core\Database;
 
-$db = Database::getInstance(require base_path("config.php"));
+$db = App::container()->resolve(Database::class);
 
 $currentUserId = 1;
 $note = $db->query("SELECT * FROM notes where id = :id and user_id = :user_id", [
