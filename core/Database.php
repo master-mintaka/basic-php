@@ -1,6 +1,7 @@
 <?php
 
 namespace Core;
+
 use PDO;
 
 class Database
@@ -57,6 +58,12 @@ class Database
         }
         return $result;
     }
+
+    public function getRowCount(): int
+    {
+        return $this->statement->rowCount();
+    }
+
 
     public function close(): void
     {

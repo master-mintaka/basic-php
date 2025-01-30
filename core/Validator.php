@@ -9,7 +9,7 @@ class Validator
         return strlen($value) >= $min && strlen($value) <= $max;
     }
 
-    public static function isValidEmail($value): int
+    public static function isValidEmail($value)
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
